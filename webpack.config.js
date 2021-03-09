@@ -48,4 +48,4 @@ module.exports = {
             chunkFilename: "[id].css" // esto es para manejar muchas lineas de código
         })
     ]
-}
+} 
