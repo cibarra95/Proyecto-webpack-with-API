@@ -3,26 +3,28 @@ import './styles/main.scss';
 
 import Pokedex from './pokedex';
 import axios from 'axios';
-//const request = require('request')
+'use strict';
 
 // Traer todos los pokemones
 const init = () => {
-    const pokemonesAPI = [];
     // TODO: Consultar API
 
     axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=100')
-        .then(function (response){
-            //handle success
-            console.log(response);
+        .then(response => {
+            const pokemonesAPI = response.data.results;
+            const pokedex = new Pokedex(pokemonesAPI);
+          //  debugger;
+            pokedex.renderPokemonsAsCards();
         })
         .catch(function (error) {
             // handled error
+            alert('no funciono  ):');
             console.log(error);
         });
         
 
-    const pokemons = new Pokedex(pokemonesAPI);
-    console.log(pokemons);
+    
+
 };
  
 // Renderizar cada pokemon
