@@ -32,9 +32,9 @@ class Pokedex {
         pokeTitle.classList.add("card-title");
         pokeModalToggle.classList.add("btn", "btn-primary");
 
-        pokeImage.src = pokemon.art_url;
+        pokeImage.src = pokemon.sprites.front_default;
         pokeImage.alt = `${pokemon.name} Image`;
-        pokeTitle.innerHTML = `${pokemon.name} <span class="badge badge-dark">${pokemon.pkdx_id}</span>`;
+        pokeTitle.innerHTML = `${pokemon.name} <span class="badge badge-dark">${pokemon.id}</span>`;
         pokeModalToggle.textContent = SHOW_MORE;
 
         pokeModalToggle.setAttribute("data-id-pokemon", pokemon._id);
