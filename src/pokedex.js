@@ -1,5 +1,6 @@
 // Almacenar el arreglo de pokemones
 import axios from 'axios';
+const SHOW_MORE = "Ver mas";
 const POKEDEX_CONTAINER = document.getElementById("pokedex");
 
 class Pokedex {
@@ -15,7 +16,7 @@ class Pokedex {
         const pokeModalToggle = document.createElement("button");
 
         pokeContainer.classList.add("card", "custom-card");
-        if(pokemones.types.length > 1){
+        if(pokemon.types.length > 1){
             pokeContainer.style.backgroundImage = `linear-gradient(45deg, ${pokemon.types
                 .map((type) => `var(--${type})`)
                 .join(", ")})`
@@ -29,7 +30,7 @@ class Pokedex {
             "align-items-center"
         );
         pokeTitle.classList.add("card-title");
-        pokeModalToogle.classList.add("btn", "btn-secundary");
+        pokeModalToggle.classList.add("btn", "btn-primary");
 
         pokeImage.src = pokemon.art_url;
         pokeImage.alt = `${pokemon.name} Image`;
@@ -46,26 +47,17 @@ class Pokedex {
         pokeContainer.appendChild(pokeBody);
         return pokeContainer;
     }
+    
+    
     renderPokemonsAsCards(){
-        let pokemonObjects = [];
-        this.pokemones.map((pokemon) =>{
-
-            // const url = pokemon.url;
-            const { url }  = pokemon;
-            
-
-            axios.get(url)
-                .then( response => pokemonObjects.push( response.data))
-                .catch( error => console.log(error));
-        
-    //    this.buildPokemonCard(pokemon)
-    });
-        console.log(pokemonObjects);
         POKEDEX_CONTAINER.innerHTML = "";
+
+        const pokemonCards = this.pokemones.map((pokemon) => this.buildPokemonCard(pokemon));
         pokemonCards.map((pokemon) => POKEDEX_CONTAINER.appendChild(pokemon));
+       
     }
       
-    }    
+}    
 
 
 export default Pokedex;
